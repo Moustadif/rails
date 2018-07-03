@@ -5,6 +5,8 @@ ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
+# bootstrap 4
+gem 'bootstrap', '~> 4.1.1'
 # devise for user authentication
 gem 'devise', '~> 4.2'
 # Use postgresql as the database for Active Record
@@ -21,6 +23,8 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+# jquery rails for bootsstrap 4
+gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
