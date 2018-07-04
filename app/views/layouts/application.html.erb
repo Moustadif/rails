@@ -12,16 +12,6 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="column">
-          <%= render 'shared/sidebar' %>
-        </div>
-        <div class="column">
-          <%= yield %>
-        </div>
-      </div>
-
-    </div>
+    <%= yield %>
   </body>
 </html>
