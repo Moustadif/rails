@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :line_items, only: [:show, :edit, :update]
-  resources :carts, only: [:show, :edit, :update]
+  resources :line_items, only: [:create, :add_quantity, :reduce_quantity, :destroy]
+  resources :carts, only: [:show, :destroy]
 
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
