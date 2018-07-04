@@ -11,6 +11,8 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'carrierwave', '~> 1.2', '>= 1.2.3'
 # devise for user authentication
 gem 'devise', '~> 4.2'
+# faker to generate fake data for seeding
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 # file validator for validating image size
 gem 'file_validators'
 # minimagick for manipulating images
