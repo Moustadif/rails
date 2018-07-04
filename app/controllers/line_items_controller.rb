@@ -1,8 +1,6 @@
 class LineItemsController < ApplicationController
   before_action :set_line_item, only: %i[add_quantity reduce_quantity destroy]
-  before_action :authenticate_user!, only: %i[create add_quantity reduce_quantity destroy]
-  before_action :set_cart, only: %i[create add_quantity reduce_quantity]
-
+  before_action :authenticate_user!, :set_cart, only: %i[create add_quantity reduce_quantity destroy]
 
   # POST /line_items
   # POST /line_items.json
@@ -27,15 +25,28 @@ class LineItemsController < ApplicationController
   end
 
   def add_quantity
-    @line_item.quantity += 1
-    @line_item.save
-    redirect_to cart_path(@current_cart)
+    if @line_item.quantity_available
+      @line_item.quantity += 1
+      @line_item.save
+      respond_to do |format|
+        format.html { redirect_to cart_path(@current_cart), notice: 'Item quantity successfully increased!' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to cart_path(@current_cart), notice: 'Sorry! You have added more products than we have in stock.' }
+        format.json { head :no_content }
+      end
+    end
   end
 
   def reduce_quantity
     @line_item.quantity -= 1 if @line_item.quantity > 1
     @line_item.save
-    redirect_to cart_path(@current_cart)
+    respond_to do |format|
+      format.html { redirect_to cart_path(@current_cart), notice: 'Item quantity successfully decreased!' }
+      format.json { head :no_content }
+    end
   end
 
   # DELETE /line_items/1
@@ -43,7 +54,7 @@ class LineItemsController < ApplicationController
   def destroy
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to line_items_url, notice: 'Line item was successfully destroyed.' }
+      format.html { redirect_to cart_path(@current_cart), notice: 'Line item was successfully removed.' }
       format.json { head :no_content }
     end
   end
@@ -52,6 +63,7 @@ class LineItemsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_line_item
+    puts "yoyo#{params}"
     @line_item = LineItem.find(params[:id])
   end
 

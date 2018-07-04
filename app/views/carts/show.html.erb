@@ -9,6 +9,7 @@
         <th>Item Name</th>
         <th>Price</th>
         <th>Quantity</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
@@ -17,7 +18,16 @@
             <td><%= index + 1 %></td>
             <td><%= line_item.product.name %></td>
             <td><%= line_item.product.price %></td>
-            <td><%= line_item.quantity %></td>
+            <td>
+              <%= line_item.quantity %>
+              <div class="btn-group">
+                <%= button_to  '+', line_items_add_quantity_path(id: line_item), class: 'btn btn-success', method: :post %>
+                <%= button_to  '-', line_items_reduce_quantity_path(id: line_item), class: 'btn btn-danger', method: :post %>
+              </div>
+            </td>
+            <td>
+              <%= button_to  'Remove Item', line_item_path(line_item), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
           </tr>
         <% end %>
       </tbody>
