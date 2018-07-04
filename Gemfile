@@ -7,8 +7,14 @@ ruby '2.5.1'
 gem 'rails', '~> 5.2.0'
 # bootstrap 4
 gem 'bootstrap', '~> 4.1.1'
+# carrierwave for image upload
+gem 'carrierwave', '~> 1.2', '>= 1.2.3'
 # devise for user authentication
 gem 'devise', '~> 4.2'
+# file validator for validating image size
+gem 'file_validators'
+# minimagick for manipulating images
+gem 'mini_magick'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
