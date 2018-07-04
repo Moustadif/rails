@@ -13,6 +13,8 @@ gem 'carrierwave', '~> 1.2', '>= 1.2.3'
 gem 'devise', '~> 4.2'
 # faker to generate fake data for seeding
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+# font awesome
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
 # file validator for validating image size
 gem 'file_validators'
 # minimagick for manipulating images

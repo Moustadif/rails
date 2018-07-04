@@ -1,6 +1,12 @@
 <div class="container mt-3">
-  <h2>Cart</h2>
-
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Cart</h2>
+    </div>
+    <div class="col-sm-6 text-center">
+      <%= link_to 'Continue Shopping', root_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
   <div class="table-responsive">
     <table class="table">
       <thead>
@@ -30,10 +36,14 @@
             </td>
           </tr>
         <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong> $<%= current_user.cart.total_price %></td>
+          <td></td>
+          <td></td>
+        </tr>
       </tbody>
     </table>
   </div>
 </div>
-
-<%#= link_to 'Edit', edit_cart_path(@cart) %>
-<%#= link_to 'Back', carts_path %>
