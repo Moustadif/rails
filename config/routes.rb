@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :categories, only: :show do
-    resources :products, only: :show
+    resources :products, only: :show, shallow: true
   end
 end

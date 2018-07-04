@@ -31,14 +31,13 @@ end
   )
 end
 
-random_categories = Category.offset(rand(Category.count))
-random_categories.each do |category|
-  category.products << Product.offset(rand(Product.count))
+
+Category.all.each do |category|
+  category.products << Product.order("RANDOM()").limit(10)
 end
 
-random_products = Product.offset(rand(Product.count))
-random_products.each do |product|
-  product.categories << Category.offset(rand(Category.count))
+Product.all.each do |product|
+  product.categories << Category.order("RANDOM()").limit(10)
 end
 
 admin = Admin.create(email: 'user@admin.com', password: 'iknownothing')
