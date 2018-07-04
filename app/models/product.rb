@@ -12,4 +12,13 @@ class Product < ApplicationRecord
   has_and_belongs_to_many :categories
   has_many :line_items, dependent: :destroy
   has_many :carts, through: :line_items
+
+  def self.search(name)
+    if name
+      # where('name LIKE ?', "%#{name}%").order('id DESC')
+      where('name ILIKE :name', name: "%#{name}%").order('id DESC')
+    else
+      all.sample(20).order('id DESC')
+    end
+  end
 end

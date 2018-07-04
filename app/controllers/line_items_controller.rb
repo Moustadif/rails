@@ -63,7 +63,6 @@ class LineItemsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_line_item
-    puts "yoyo#{params}"
     @line_item = LineItem.find(params[:id])
   end
 
