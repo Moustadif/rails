@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_featured_products
-    @products = Product.order("RANDOM()").limit(10)
+    @products = Product.all.sample(20)
   end
 
   def set_cart

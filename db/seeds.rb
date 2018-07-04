@@ -33,11 +33,11 @@ end
 
 
 Category.all.each do |category|
-  category.products << Product.order("RANDOM()").limit(10)
+  category.products << Product.all.sample(10)
 end
 
 Product.all.each do |product|
-  product.categories << Category.order("RANDOM()").limit(10)
+  product.categories << Category.all.sample(10)
 end
 
 admin = Admin.create(email: 'user@admin.com', password: 'iknownothing')
