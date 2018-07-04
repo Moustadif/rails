@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  before_action :set_categories, :set_featured_products
+  before_action :set_categories, :set_featured_products, :set_cart
 
 
   def set_categories
@@ -9,5 +9,13 @@ class ApplicationController < ActionController::Base
 
   def set_featured_products
     @products = Product.order("RANDOM()").limit(10)
+  end
+
+  def set_cart
+    if user_signed_in? && current_user.cart.present?
+      @current_cart = current_user.cart
+    else
+      @current_cart = nil
+    end
   end
 end

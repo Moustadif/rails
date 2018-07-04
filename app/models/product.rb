@@ -10,4 +10,5 @@ class Product < ApplicationRecord
 
   # associations
   has_and_belongs_to_many :categories
+  has_many :line_items, dependent: :destroy
 end

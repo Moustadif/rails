@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get 'product/show'
-  get 'category/show'
+  resources :line_items, only: [:show, :edit, :update]
+  resources :carts, only: [:show, :edit, :update]
+
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'home/index'
