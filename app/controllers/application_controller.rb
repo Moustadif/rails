@@ -12,8 +12,12 @@ class ApplicationController < ActionController::Base
   end
 
   def set_cart
-    if user_signed_in? && current_user.cart.present?
-      @current_cart = current_user.cart
+    if user_signed_in?
+      if  current_user.cart.present?
+        @current_cart = current_user.cart
+      else
+        @current_cart = Cart.create(user_id: current_user.id)
+      end
     else
       @current_cart = nil
     end

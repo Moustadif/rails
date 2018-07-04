@@ -6,14 +6,15 @@
 
 <div class="card-columns">
   <% @products.each do |product| %>
-    <%= link_to product do %>
-      <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 18rem;">
+      <%= link_to product do %>
         <%= image_tag product.image_url.to_s, class: 'card-img-top', alt: product.name %>
         <div class="card-body">
           <h5 class="card-title"><%= product.name %></h5>
           <p class="card-text"><%= truncate(product.description, length: 30) %></p>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+        <%= link_to 'Add to Cart', line_items_path(product_id: product), method: :post %>
+    </div>
   <% end %>
 </div>

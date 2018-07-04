@@ -1,9 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class="container mt-3">
+  <h2>Cart</h2>
 
-<p>
-  <strong>User:</strong>
-  <%= @cart.user %>
-</p>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>No.</th>
+        <th>Item Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+      </thead>
+      <tbody>
+        <% @cart.line_items.each_with_index do |line_item, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= line_item.product.name %></td>
+            <td><%= line_item.product.price %></td>
+            <td><%= line_item.quantity %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+<%#= link_to 'Edit', edit_cart_path(@cart) %>
+<%#= link_to 'Back', carts_path %>

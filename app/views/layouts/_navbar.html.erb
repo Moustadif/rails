@@ -23,9 +23,15 @@
           <% end %>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item float-right">
+          <%= link_to 'Sign Out' , destroy_user_session_url, class: 'nav-link', method: :delete %>
+        </li>
+      <% else %>
+        <li class="nav-item float-right">
+          <%= link_to 'Sign In' , new_user_session_url , class: 'nav-link' %>
+        </li>
+      <% end %>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
