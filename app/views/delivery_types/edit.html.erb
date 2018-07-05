@@ -1,0 +1,12 @@
+<h1>Editing Delivery Type</h1>
+
+<%= render 'form', delivery_type: @delivery_type %>
+
+<%= link_to 'Back', edit_billing_address_path(@current_cart), class: 'btn btn-primary' %>
+<% if @current_cart.payment_type.present? %>
+    <%= link_to 'Edit Payment Method', edit_payment_type_path, class: 'btn btn-primary' %>
+<% else %>
+    <%= link_to 'Choose Payment Method', new_payment_type_path, class: 'btn btn-primary' %>
+<% end %>
+
+

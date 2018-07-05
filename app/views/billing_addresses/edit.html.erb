@@ -1,0 +1,12 @@
+<h1>Editing Billing Address</h1>
+
+<%= render 'form', billing_address: @billing_address %>
+
+
+<%= link_to 'Back', edit_shipping_address_path(@current_cart), class: 'btn btn-primary' %>
+
+<% if @current_cart.delivery_type.present? %>
+    <%= link_to 'Next', edit_delivery_type_path , class: 'btn btn-success' %>
+<% else %>
+    <%= link_to 'Next', new_delivery_type_path, class: 'btn btn-success' %>
+<% end %>

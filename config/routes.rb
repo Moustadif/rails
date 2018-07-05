@@ -1,6 +1,25 @@
 Rails.application.routes.draw do
-  resources :line_items, only: [:create, :destroy]
-  resources :carts, only: [:show, :destroy]
+  resources :delivery_types
+  resources :payment_types
+  resources :billing_addresses
+  resources :shipping_addresses
+  resources :line_items, only: [:create, :destroy] do
+    collection do
+      post 'add_quantity'
+      end
+    collection do
+      post 'reduce_quantity'
+    end
+  end
+  resources :carts, only: [:show, :destroy] do
+    resources :billing_addresses
+    resources :shipping_addresses
+    resources :payment_types
+    resources :delivery_types
+    collection do
+      get 'review'
+    end
+  end
 
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -12,8 +31,4 @@ Rails.application.routes.draw do
   resources :categories, only: :show do
     resources :products, only: :show, shallow: true
   end
-
-  # Non-Resourceful Routes
-  post 'line_items/add_quantity', to: 'line_items#add_quantity'
-  post 'line_items/reduce_quantity', to: 'line_items#reduce_quantity'
 end
