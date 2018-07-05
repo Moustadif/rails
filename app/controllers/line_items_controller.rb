@@ -7,9 +7,7 @@ class LineItemsController < ApplicationController
   def create
     chosen_product = Product.find(params[:line_item][:product_id])
     if @current_cart.products.include?(chosen_product)
-      # Find the line_item with the chosen_product
       @line_item = @current_cart.line_items.find_by(product_id: chosen_product)
-      # Iterate the line_item's quantity by one
       @line_item.quantity += 1
     else
       @line_item = LineItem.create!(line_item_params)

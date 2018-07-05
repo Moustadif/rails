@@ -23,7 +23,7 @@
         <td><%= shipping_address.zip %></td>
         <td><%= shipping_address.cart %></td>
         <td><%= link_to 'Show', shipping_address %></td>
-        <td><%= link_to 'Edit', edit_shipping_address_path(shipping_address) %></td>
+        <td><%= link_to 'Edit', edit_cart_shipping_address_path(shipping_address) %></td>
         <td><%= link_to 'Destroy', shipping_address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Shipping Address', new_shipping_address_path %>
+<%= link_to 'New Shipping Address', new_cart_shipping_address_path %>

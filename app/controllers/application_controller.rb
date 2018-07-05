@@ -1,12 +1,9 @@
 class ApplicationController < ActionController::Base
-
   before_action :set_categories, :set_cart
-
 
   def set_categories
     @categories = Category.all
   end
-
 
   def set_cart
     if user_signed_in?

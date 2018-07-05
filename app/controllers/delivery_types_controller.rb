@@ -46,7 +46,7 @@ class DeliveryTypesController < ApplicationController
   # PATCH/PUT /delivery_types/1.json
   def update
     respond_to do |format|
-      if @delivery_type.update(delivery_type_params)
+      if @delivery_type.update!(delivery_type_params)
         if @current_cart.payment_type.present?
           format.html { redirect_to edit_payment_type_path, notice: 'Delivery type was successfully updated.' }
         else

@@ -7,7 +7,7 @@ class Cart < ApplicationRecord
   has_one :payment_type, dependent: :destroy
   has_one :delivery_type, dependent: :destroy
 
-  enum status: %i[active purchased]
+  enum status: %i[active confirmed]
 
   def total_quantity
     line_items.sum(&:quantity)
