@@ -45,3 +45,12 @@ rails s
 * add payment type to cart order
 * Confirm order 
 * Reset cart after order confirmation
+
+### See Live Demo
+* https://kinbo-e.herokuapp.com
+* Admin credentials:
+    ```
+     username: user@admin.com
+     password: iknownothing
+    ```
+* please note: Having problems with image load on heroku free instance
