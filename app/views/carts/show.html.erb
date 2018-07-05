@@ -19,7 +19,7 @@
       </tr>
       </thead>
       <tbody>
-        <% @cart.line_items.each_with_index do |line_item, index| %>
+        <% @current_cart.line_items.each_with_index do |line_item, index| %>
           <tr>
             <td><%= index + 1 %></td>
             <td><%= line_item.product.name %></td>
@@ -39,7 +39,7 @@
         <tr>
           <td></td>
           <td></td>
-          <td><strong>Total:</strong> $<%= current_user.cart.total_price %></td>
+          <td><strong>Total:</strong> $<%= @current_cart.total_price %></td>
           <td></td>
           <td></td>
         </tr>

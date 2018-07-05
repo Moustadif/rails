@@ -1,20 +1,18 @@
 class LineItemsController < ApplicationController
   before_action :set_line_item, only: %i[add_quantity reduce_quantity destroy]
-  before_action :authenticate_user!, :set_cart, only: %i[create add_quantity reduce_quantity destroy]
+  before_action :authenticate_user!, only: %i[create add_quantity reduce_quantity destroy]
 
   # POST /line_items
   # POST /line_items.json
   def create
-    chosen_product = Product.find(params[:product_id])
+    chosen_product = Product.find(params[:line_item][:product_id])
     if @current_cart.products.include?(chosen_product)
       # Find the line_item with the chosen_product
       @line_item = @current_cart.line_items.find_by(product_id: chosen_product)
       # Iterate the line_item's quantity by one
       @line_item.quantity += 1
     else
-      @line_item = LineItem.new
-      @line_item.cart = @current_cart
-      @line_item.product = chosen_product
+      @line_item = LineItem.create!(line_item_params)
     end
 
     @line_item.save
@@ -70,9 +68,5 @@ class LineItemsController < ApplicationController
   # only allow the white list through.
   def line_item_params
     params.require(:line_item).permit(:product_id, :cart_id, :quantity)
-  end
-
-  def set_cart
-    @current_cart = current_user.cart
   end
 end

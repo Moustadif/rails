@@ -18,7 +18,7 @@ class Product < ApplicationRecord
       # where('name LIKE ?', "%#{name}%").order('id DESC')
       where('name ILIKE :name', name: "%#{name}%").order('id DESC')
     else
-      all.sample(12)
+      all.sample(9)
     end
   end
 end

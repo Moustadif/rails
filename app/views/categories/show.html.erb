@@ -6,7 +6,7 @@
 
 <div class="card-columns">
   <% @category.products.each do |product| %>
-    <div class="card" style="width: 18rem;">
+    <div class="card">
       <%= link_to product do %>
         <%= image_tag product.image_url.to_s, class: 'card-img-top', alt: product.name %>
         <div class="card-body">
@@ -14,11 +14,11 @@
           <p class="card-text"><%= truncate(product.description, length: 30) %></p>
         </div>
       <% end %>
-      <div class="row">
-        <div class="col-sm-6">
-          <%= button_to 'Add to Cart', line_items_path(product_id: product), class: 'btn btn-primary', method: :post %>
+      <div class="d-flex">
+        <div class="p-2 bg-info flex-fill text-center">
+          <%= button_to 'Add to Cart', line_items_path(line_item: { product_id: product, cart_id: @current_cart }), class: 'btn btn-primary', method: :post %>
         </div>
-        <div class="col-sm-6">$<%= product.price %></div>
+        <div class="p-2 bg-warning flex-fill text-center">$<%= product.price %></div>
       </div>
     </div>
   <% end %>

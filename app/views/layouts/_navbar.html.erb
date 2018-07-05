@@ -24,17 +24,20 @@
     <ul class="nav justify-content-end">
       <% if user_signed_in? %>
           <li class="nav-item float-right">
-            <%= link_to 'Sign Out' , destroy_user_session_url, class: 'nav-link', method: :delete %>
+            <%= link_to 'Sign Out' , destroy_user_session_path, class: 'nav-link', method: :delete %>
           </li>
           <li class="nav-item">
-            <%= link_to  cart_path(current_user.cart), class: 'nav-link' do %>
+            <%= link_to cart_path(@current_cart), class: 'nav-link' do %>
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-              Cart (<%= current_user.cart.total_quantity %>)
+              Cart (<%= @current_cart.total_quantity %>)
             <% end %>
           </li>
       <% else %>
           <li class="nav-item float-right">
-            <%= link_to 'Sign In' , new_user_session_url , class: 'nav-link' %>
+            <%= link_to 'Sign In' , new_user_session_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item float-right">
+            <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
           </li>
       <% end %>
     </ul>
