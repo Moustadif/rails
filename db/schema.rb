@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_04_121341) do
+ActiveRecord::Schema.define(version: 2018_07_05_085056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,10 +53,22 @@ ActiveRecord::Schema.define(version: 2018_07_04_121341) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "billing_addresses", force: :cascade do |t|
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.integer "zip"
+    t.bigint "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_billing_addresses_on_cart_id"
+  end
+
   create_table "carts", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
@@ -75,6 +87,14 @@ ActiveRecord::Schema.define(version: 2018_07_04_121341) do
     t.index ["product_id", "category_id"], name: "index_categories_products_on_product_id_and_category_id"
   end
 
+  create_table "delivery_types", force: :cascade do |t|
+    t.string "delivery_via"
+    t.bigint "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_delivery_types_on_cart_id"
+  end
+
   create_table "line_items", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "cart_id", null: false
@@ -83,6 +103,14 @@ ActiveRecord::Schema.define(version: 2018_07_04_121341) do
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
     t.index ["product_id"], name: "index_line_items_on_product_id"
+  end
+
+  create_table "payment_types", force: :cascade do |t|
+    t.string "payment_via"
+    t.bigint "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_payment_types_on_cart_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -94,6 +122,17 @@ ActiveRecord::Schema.define(version: 2018_07_04_121341) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_products_on_name"
+  end
+
+  create_table "shipping_addresses", force: :cascade do |t|
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.integer "zip"
+    t.bigint "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_shipping_addresses_on_cart_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -113,7 +152,11 @@ ActiveRecord::Schema.define(version: 2018_07_04_121341) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "billing_addresses", "carts"
   add_foreign_key "carts", "users"
+  add_foreign_key "delivery_types", "carts"
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "products"
+  add_foreign_key "payment_types", "carts"
+  add_foreign_key "shipping_addresses", "carts"
 end

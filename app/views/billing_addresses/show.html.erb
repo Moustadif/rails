@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Street:</strong>
+  <%= @billing_address.street %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @billing_address.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @billing_address.state %>
+</p>
+
+<p>
+  <strong>Zip:</strong>
+  <%= @billing_address.zip %>
+</p>
+
+<p>
+  <strong>Cart:</strong>
+  <%= @billing_address.cart %>
+</p>
+
+<%= link_to 'Edit', edit_billing_address_path(@billing_address) %> |
+<%= link_to 'Back', billing_addresses_path %>

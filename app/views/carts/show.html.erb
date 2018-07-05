@@ -5,6 +5,11 @@
     </div>
     <div class="col-sm-6 text-center">
       <%= link_to 'Continue Shopping', root_path, class: 'btn btn-secondary' %>
+      <% if @current_cart.shipping_address.present? %>
+        <%= link_to 'Checkout', edit_shipping_address_path , class: 'btn btn-success' %>
+    <% else %>
+        <%= link_to 'Checkout', new_shipping_address_path , class: 'btn btn-success' %>
+    <% end %>
     </div>
   </div>
   <div class="table-responsive">
@@ -27,8 +32,8 @@
             <td>
               <%= line_item.quantity %>
               <div class="btn-group">
-                <%= button_to  '+', line_items_add_quantity_path(id: line_item), class: 'btn btn-success', method: :post %>
-                <%= button_to  '-', line_items_reduce_quantity_path(id: line_item), class: 'btn btn-danger', method: :post %>
+                <%= button_to  '+', add_quantity_line_items_path(id: line_item), class: 'btn btn-success', method: :post %>
+                <%= button_to  '-', reduce_quantity_line_items_path(id: line_item), class: 'btn btn-danger', method: :post %>
               </div>
             </td>
             <td>

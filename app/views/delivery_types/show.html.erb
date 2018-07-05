@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Delivery via:</strong>
+  <%= @delivery_type.delivery_via %>
+</p>
+
+<p>
+  <strong>Cart:</strong>
+  <%= @delivery_type.cart %>
+</p>
+
+<%= link_to 'Edit', edit_delivery_type_path(@delivery_type) %> |
+<%= link_to 'Back', delivery_types_path %>
